@@ -1,27 +1,29 @@
 package com.narigone.background_upload_study.presentation.view.fragment;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.narigone.background_upload_study.R;
+import com.narigone.background_upload_study.domain.image.entity.Image;
 import com.narigone.background_upload_study.presentation.view.fragment.ImageListFragment.OnListFragmentInteractionListener;
-import com.narigone.background_upload_study.presentation.view.fragment.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Image} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyImageRecyclerViewAdapter extends RecyclerView.Adapter<MyImageRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Image> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyImageRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyImageRecyclerViewAdapter(List<Image> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +38,8 @@ public class MyImageRecyclerViewAdapter extends RecyclerView.Adapter<MyImageRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getId());
+        holder.mContentView.setText(mValues.get(position).getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +62,7 @@ public class MyImageRecyclerViewAdapter extends RecyclerView.Adapter<MyImageRecy
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Image mItem;
 
         public ViewHolder(View view) {
             super(view);
