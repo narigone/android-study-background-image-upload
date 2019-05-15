@@ -1,4 +1,4 @@
-package com.narigone.background_upload_study.presentation.view.fragment;
+package com.narigone.background_upload_study.presentation.image.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.narigone.background_upload_study.R;
 import com.narigone.background_upload_study.domain.image.entity.Image;
+import com.narigone.background_upload_study.presentation.image.view.adapter.ImageListRecyclerViewAdapter;
+
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -26,6 +30,7 @@ public class ImageListFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
+    private ImageListRecyclerViewAdapter mAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -54,8 +59,8 @@ public class ImageListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_list, container, false);
 
         // Set the adapter
@@ -67,7 +72,9 @@ public class ImageListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            //recyclerView.setAdapter(new MyImageRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+            mAdapter = new ImageListRecyclerViewAdapter(mListener);
+            recyclerView.setAdapter(mAdapter);
         }
         return view;
     }

@@ -1,4 +1,4 @@
-package com.narigone.background_upload_study.presentation.view.fragment;
+package com.narigone.background_upload_study.presentation.image.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.narigone.background_upload_study.R;
 import com.narigone.background_upload_study.domain.image.entity.Image;
-import com.narigone.background_upload_study.presentation.view.fragment.ImageListFragment.OnListFragmentInteractionListener;
+import com.narigone.background_upload_study.presentation.image.view.fragment.ImageListFragment.OnListFragmentInteractionListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,14 +19,24 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyImageRecyclerViewAdapter extends RecyclerView.Adapter<MyImageRecyclerViewAdapter.ViewHolder> {
+public class ImageListRecyclerViewAdapter extends RecyclerView.Adapter<ImageListRecyclerViewAdapter.ViewHolder> {
 
     private final List<Image> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyImageRecyclerViewAdapter(List<Image> items, OnListFragmentInteractionListener listener) {
+    public ImageListRecyclerViewAdapter(OnListFragmentInteractionListener listener) {
+        mValues = new ArrayList<>();
+        mListener = listener;
+    }
+
+    public ImageListRecyclerViewAdapter(List<Image> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+    }
+
+    public void addImages(List<Image> imageList){
+        mValues.addAll(imageList);
+        this.notifyDataSetChanged();
     }
 
     @Override

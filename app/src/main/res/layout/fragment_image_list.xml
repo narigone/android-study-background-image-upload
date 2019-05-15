@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.narigone.background_upload_study.presentation.view.fragment.ImageListFragment"
+    tools:context=".presentation.image.view.fragment.ImageListFragment"
     tools:listitem="@layout/fragment_image" />
